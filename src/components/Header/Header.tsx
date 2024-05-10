@@ -1,10 +1,11 @@
 import './header.css'
 import { IoSearchOutline } from "react-icons/io5";
+import {Link} from "react-router-dom";
 
 const Header = () => {
     return (
         <div className='page-header'>
-            <img src="/logo.png" alt="TNT-logo"/>
+            <Link to="/"><img src="/logo.png" alt="TNT-logo"/></Link>
             <div className="input-box">
                 <div>
                     <div className="search-icon">
