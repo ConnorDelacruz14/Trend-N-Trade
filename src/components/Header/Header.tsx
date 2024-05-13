@@ -13,7 +13,6 @@ const Header = () => {
                     </div>
                     <input type="text" placeholder="Search here..."/>
                 </div>
-
                 <button>Search</button>
             </div>
             <div className="nav-options">

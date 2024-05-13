@@ -1,0 +1,73 @@
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+}
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 32px;
+}
+
+.home-banner img {
+    width: 1200px;
+    height: 510px;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+.sliding-enter {
+    transform: translateX(100%);
+}
+
+.sliding-enter-active {
+    transform: translateX(0);
+}
+
+.sliding-exit {
+    transform: translateX(0);
+}
+
+.sliding-exit-active {
+    transform: translateX(-200%);
+}
+
+.home-banner-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-banner button {
+    font-size: 0.875rem;
+    font-weight: bold;
+    padding: 10px 14px;
+    width: 94px;
+    border-radius: 4px;
+    border: none;
+}
+
+.home-banner-text h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.shop-now {
+    background-color: #262626;
+    color: #fff;
+}
+
+.shop-now:hover {
+    background-color: #747474;
+}
