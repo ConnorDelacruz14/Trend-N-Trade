@@ -16,3 +16,14 @@ button {
     cursor: pointer;
     transition-duration: 0.4s;
 }
+
+#root {
+    height: 100vh;
+    width: 100vw;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #707070;
+}

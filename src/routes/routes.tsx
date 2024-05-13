@@ -7,6 +7,8 @@ import {
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const Listing = lazy(() => import('../pages/Listing/Listing'));
+const SignUp = lazy(() => import('../pages/SignUp/SignUp'));
+const Login = lazy(() => import('../pages/Login/Login'))
 
 const AppRoutes: React.FC = () => {
     return (
@@ -14,7 +16,9 @@ const AppRoutes: React.FC = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/Listing" element={<Listing />} />
+                    <Route path="/listing" element={<Listing />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/login" element={<Login/>}></Route>
                 </Routes>
             </Suspense>
         </Router>
