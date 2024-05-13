@@ -70,7 +70,7 @@ const Login= () => {
                     </div>
                     <button className="login-button-confirm" type="submit">Login</button>
                 </form>
-
+                <a href="/signup">Don't have an account? Sign in here</a>
             </div>
         </div>
     );
