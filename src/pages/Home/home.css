@@ -71,3 +71,11 @@
 .shop-now:hover {
     background-color: #747474;
 }
+
+.sell-now:hover {
+    background-color: #b7b7b7;
+}
+
+.banner-buttons button {
+    margin: 0 10px;
+}

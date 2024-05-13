@@ -48,7 +48,10 @@ const Home = () => {
                     <div className="home-banner-text">
                         <h2>Set Trends, Bargain Brilliance.</h2>
                     </div>
-                    <button className="shop-now">Shop now</button>
+                    <div className="banner-buttons">
+                        <button className="shop-now">Shop now</button>
+                        <button className="sell-now">Sell now</button>
+                    </div>
                 </div>
             </div>
         </div>
