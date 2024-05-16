@@ -1,0 +1,75 @@
+.filter-container{
+    display:flex;
+}
+.filters{
+    margin:1em;
+    display:inline-flex;
+    gap:1em;
+    max-height:1.2em;
+}
+
+.price-filter{
+    border:1px solid #e4e4e4;
+    padding:5px;
+    margin-left:1em;
+    display:inline-flex;
+    flex-direction:column;
+    gap:3px;
+    align-items:center;
+}
+
+.price-filter-inputs{
+    display:inline-flex;
+    gap:5px;
+}
+
+.search-results{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: space-between;
+}
+
+.product{
+    margin:5em;
+    border:1px solid #e4e4e4;
+    padding:2em;
+    display:flex;
+    flex-direction:column;
+    align-content: center;
+}
+
+.product-details{
+    display:flex;
+    gap: 3em;
+    justify-content:center;
+}
+
+.wrapper{
+    display:none;
+}
+
+.listing h4 {
+    padding: 0px 18%;
+}
+
+.listing ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.listing ul li {
+    width: 15%; /* Set width to 25% to display 4 items per row */
+    padding: 10px; /* Adjust padding as needed */
+    
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.listing ul li img {
+    width: 180px;
+}

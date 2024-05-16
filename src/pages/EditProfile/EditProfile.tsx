@@ -1,7 +1,6 @@
-import React, { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import "./editprofile.css";
 import Header from "../../components/Header/Header.tsx";
-import { Link } from "react-router-dom";
 
 interface SocialLinks {
   instagram: string;
