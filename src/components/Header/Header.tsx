@@ -13,7 +13,7 @@ const Header = () => {
                     </div>
                     <input type="text" placeholder="Search here..."/>
                 </div>
-                <a href="/search"><button>Search</button></a>
+                <a href="/search">Search</a>
             </div>
             <div className="nav-options">
                 <a href="/purchases">Purchases</a>
