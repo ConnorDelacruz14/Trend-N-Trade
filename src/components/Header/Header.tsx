@@ -16,11 +16,10 @@ const Header = () => {
                 <button>Search</button>
             </div>
             <div className="nav-options">
-                <a>Sell</a>
-                <a>Help</a>
-                <a>About</a>
-                <a>Cart</a>
-                <a>Profile</a>
+                <a href="/edit-listing">Sell</a>
+                <a href="/about">About</a>
+                <a href="/cart">Cart</a>
+                <a href="/profile">Profile</a>
             </div>
         </div>
     );
