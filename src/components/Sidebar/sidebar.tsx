@@ -13,6 +13,12 @@ const Sidebar = () => {
         <div className="inner-sec1">
           <Link to="/payment"><span>Payment Methods</span></Link>
         </div>
+        <div className="inner-sec1">
+          <Link to="/trades"><span>My Trades</span></Link>
+        </div>
+        <div className="inner-sec1">
+          <Link to="/offers"><span>My Offers</span></Link>
+        </div>
         <h4>Saves</h4>
         <div className="inner-sec1">
           <span>Saved items</span>
@@ -20,7 +26,7 @@ const Sidebar = () => {
         <h4>Profile Info</h4>
         <div className="inner-sec1">
           <Link to="/edit"><span>Edit Profile</span></Link>
-          
+
         </div>
       </div>
     </section>

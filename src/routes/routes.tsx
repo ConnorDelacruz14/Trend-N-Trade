@@ -18,6 +18,10 @@ const Cart= lazy(() => import('../pages/Cart/Cart'));
 const EditProfile = lazy(() => import('../pages/EditProfile/EditProfile'))
 const Search = lazy(() => import('../pages/Search/Search'))
 const Purchases = lazy(() => import('../pages/Purchases/Purchases'))
+// const Checkout = lazy(() => import('../pages/Checkout/Checkout'))
+// const SavedItems = lazy(() => import('../pages/SavedItems/SavedItems'))
+const Offers = lazy(() => import('../pages/Offers/Offers'))
+const Trades = lazy(() => import('../pages/Trades/Trades'))
 
 
 const AppRoutes: React.FC = () => {
@@ -39,6 +43,10 @@ const AppRoutes: React.FC = () => {
                     <Route path="/edit" element={<EditProfile />} />
                     <Route path="/search" element={<Search />} />
                     <Route path="/purchases" element={<Purchases/>} />
+                    <Route path="/offers" element={<Offers/>} />
+                    <Route path="/trades" element={<Trades/>} />
+                    {/*<Route path="/SavedItems" element={<SavedItems/>} />*/}
+                    {/*<Route path="/Checkout" element={<Checkout/>} />*/}
 
 
                 </Routes>
