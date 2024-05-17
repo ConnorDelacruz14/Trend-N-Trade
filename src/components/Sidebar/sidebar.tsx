@@ -21,7 +21,7 @@ const Sidebar = () => {
         </div>
         <h4>Saves</h4>
         <div className="inner-sec1">
-          <span>Saved items</span>
+          <Link to="/SavedItems"><span>Saved Items</span></Link>
         </div>
         <h4>Profile Info</h4>
         <div className="inner-sec1">
