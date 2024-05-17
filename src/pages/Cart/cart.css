@@ -1,0 +1,135 @@
+.cart-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.cart-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f3f3f3;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.cart-item-container {
+    height: 228px;
+    width: 870px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #0000001a;
+    margin: 8px;
+    gap: 16px;
+}
+
+.cart-item-seller img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.cart-item img {
+    height: 120px;
+    width: 120px;
+    margin-right: 16px;
+}
+
+.cart-item-seller {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.cart-item-seller section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart-item-seller-name {
+    font-size: .875rem;
+    font-weight: bold;
+}
+
+.cart-item-seller-username {
+    font-size: .75rem;
+    color: #747474;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-item section {
+    display: flex;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cart-item-status {
+    background-color: #c5e0ff;
+    border-radius: 50px;
+    padding: 4px 8px;
+    color: #262626;
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+    gap: 8px;
+    font-size: 0.75rem;
+}
+
+.cart-item-name {
+    font-size: .875rem;
+}
+
+.cart-item-price {
+    font-size: .875rem;
+    font-weight: bold;
+}
+
+.cart-item-payment-container {
+    display: flex;
+    flex-direction: column;
+    width: 42%;
+    gap: 16px;
+    font-size: .875rem;
+}
+
+.cart-item-payment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-total {
+    font-weight: bold;
+}
+
+.cart-item-payment-container button {
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #262626;
+    border-radius: 2px;
+    transition: all .2s ease;
+    height: 31px;
+}
+
+.cart-item-payment-container button:hover {
+    background-color: #747474;
+    border-color: #747474;
+}
+
+svg:hover {
+    cursor: pointer;
+}
