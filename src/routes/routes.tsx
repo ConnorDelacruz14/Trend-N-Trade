@@ -14,7 +14,10 @@ const Payment = lazy(() => import('../pages/Payment/Payment'));
 const Contact = lazy(() => import('../pages/Contact/Contact'));
 const Help= lazy(() => import('../pages/Help/Help'));
 const Profile= lazy(() => import('../pages/Profile/profile'));
-
+const Cart= lazy(() => import('../pages/Cart/Cart'));
+const EditProfile = lazy(() => import('../pages/EditProfile/EditProfile'))
+const Search = lazy(() => import('../pages/Search/Search'))
+const Purchases = lazy(() => import('../pages/Purchases/Purchases'))
 
 
 const AppRoutes: React.FC = () => {
@@ -30,9 +33,12 @@ const AppRoutes: React.FC = () => {
                     <Route path="/About" element={<About />} />
                     <Route path="/Payment" element={<Payment />} />
                     <Route path="/Contact" element={<Contact />} />
-                    <Route path="/Cart" element={<Home />} />
+                    <Route path="/Cart" element={<Cart />} />
                     <Route path="/Help" element={<Help />} />
                     <Route path="/Profile" element={<Profile />} />
+                    <Route path="/edit" element={<EditProfile />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/purchases" element={<Purchases/>} />
 
 
                 </Routes>
