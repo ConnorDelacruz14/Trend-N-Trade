@@ -6,13 +6,14 @@ const Search = () => {
 
     const [productsList, setProducts] = useState([
         { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 35.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
-        { id: 2, category: "clothing", brand: "not nike", size: "M", price: 6.99, condition: "new", image: "/src/img/shirt2.jpeg", name: "Tee shirt - Blue" },
-        { id: 3, category: "clothing", brand: "not nike", size: "M", price: 15.99, condition: "new", image: "/src/img/pants1.jpeg", name: "Khaki Pants" },
-        { id: 4, category: "clothing", brand: "not nike", size: "M", price: 4.99, condition: "new", image: "/src/img/socks.jpg", name: "Full Socks - Yellow" },
-        { id: 5, category: "clothing", brand: "not nike", size: "M", price: 17.99, condition: "new", image: "/src/img/pants2.jpeg", name: "Cotton Pants - Navy" },
-        { id: 6, category: "clothing", brand: "not nike", size: "M", price: 49.99, condition: "new", image: "/src/img/watch1.jpeg", name: "Smart Watch" },
-        { id: 7, category: "clothing", brand: "not nike", size: "M", price: 89.99, condition: "new", image: "/src/img/shoes1.jpg", name: "Hoka Shoes" },
-        { id: 8, category: "clothing", brand: "not nike", size: "M", price: 99.99, condition: "new", image: "/src/img/shoes2.jpg", name: "Sky Shoes" }
+        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 5.00, condition: "heavily used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
+        { id: 1986735, category: "clothing", brand: "Disney", size: "L", price: 25.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
+        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 15.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
+        { id: 1986735, category: "clothing", brand: "Disney", size: "S", price: 115.00, condition: "new", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
+        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 30.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
+        { id: 1986735, category: "clothing", brand: "Disney", size: "XL", price: 35.99, condition: "Lightly used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
+        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 12.99, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
+
     ]);
 
     const productItems = productsList.map(product => (
