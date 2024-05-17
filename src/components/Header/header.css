@@ -1,75 +1,85 @@
 .page-header {
-    height: 80px;
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 15px;
-    border-bottom: 1px solid #ccc;
-    background-color: #fff;
+  width: auto;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  padding: 10px 0px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .page-header img {
-    height: 70px;
+  width: 50px;
 }
 
 .input-box {
-    height: 50px;
-    max-width: 900px;
-    margin: 0 15px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 15px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+  height: 50px;
+  max-width: 700px;
+  margin: 0 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 
 .input-box div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .search-icon {
-    display: flex;
+  display: flex;
 }
 
 .input-box .search-icon {
-    font-size: 24px;
-    color: #707070;
+  font-size: 24px;
+  color: #707070;
 }
 
 .input-box input {
-    height: 100%;
-    width: 100%;
-    outline: none;
-    font-size: 18px;
-    font-weight: 400;
-    border: none;
-    padding: 0 20px;
-    background-color: transparent;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  padding: 0 20px;
+  background-color: transparent;
 }
 
-.input-box a {
-    font-size: 16px;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    background-color: #4070f4;
-    cursor: pointer;
-    height: 30px;
-    width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.input-box button {
+  font-size: 16px;
+  color: black;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  height: 30px;
+  width: 100px;
 }
 
-.nav-options a {
-    margin: 0 10px;
-    cursor: pointer;
+.page-header .func {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.page-header .func li {
+  list-style: none;
+  margin: 0px 10px;
+}
+
+.page-header .func li a {
+  font-size: clamp(0.75rem, 0.6429rem + 0.5357vw, 1.125rem);
+  color: black;
+  text-decoration: none;
 }
