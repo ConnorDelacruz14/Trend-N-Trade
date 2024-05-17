@@ -12,6 +12,7 @@ const Login = lazy(() => import('../pages/Login/Login'))
 const EditProfile = lazy(() => import('../pages/EditProfile/EditProfile'))
 const Search = lazy(() => import('../pages/Search/Search'))
 const Cart = lazy(() => import('../pages/Cart/Cart'));
+const Purchases = lazy(() => import('../pages/Purchases/Purchases'))
 
 const AppRoutes: React.FC = () => {
     return (
@@ -23,6 +24,7 @@ const AppRoutes: React.FC = () => {
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/edit" element={<EditProfile />} />
                     <Route path="/search" element={<Search />} />
+                    <Route path="/purchases" element={<Purchases/>} />
                     <Route path="/login" element={<Login/>}></Route>
                     <Route path="/cart" element={<Cart/>} />
                 </Routes>
