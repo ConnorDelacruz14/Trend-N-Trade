@@ -80,12 +80,12 @@ const Listing = () => {
                             <div className="listing-main-info-container">
                                 <div className="listing-cart">
                                     <span>
-                                        <IoCartOutline color="#3d37bd" />
+                                        <IoCartOutline color="#3d37bd"/>
                                         {listing.cartStatus ? `In ${listing.cartStatus} people's carts` : ""}
                                     </span>
                                     <span>
-                                        <IoChatboxEllipsesOutline color="#3d37bd" />
-                                        {listing.offerStatus? `${listing.offerStatus} offer(s) sent` : ""}
+                                        <IoChatboxEllipsesOutline color="#3d37bd"/>
+                                        {listing.offerStatus ? `${listing.offerStatus} offer(s) sent` : ""}
                                     </span>
                                 </div>
                                 <div className="listing-name">{listing.name}</div>
@@ -93,6 +93,9 @@ const Listing = () => {
                                 <div className="listing-other">{listing.otherParams ? [0] : ""}</div>
                                 <button className="listing-buy-now">Buy now</button>
                                 <button className="listing-add-cart">Add to cart</button>
+                                <button className="listing-extra">Trade</button>
+                                <button className="listing-extra">Offer</button>
+                                <button className="listing-extra">Save</button>
                             </div>
                             <div className="listing-buyer-protection">
                                 <IoShieldCheckmarkOutline width={28} height={28} />
