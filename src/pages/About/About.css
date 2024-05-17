@@ -1,0 +1,18 @@
+.About {
+  padding: 30px;
+  display: flex;
+  text-align: justify;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+}
+
+.About .Description {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.About .Description div {
+  padding: 5px 20px;
+}

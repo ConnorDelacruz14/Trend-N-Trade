@@ -12,7 +12,7 @@ const categoryImages = [
 const Home = () => {
     const [currentImage, setCurrentImage] = useState(0);
     const [animateDirection, setAnimateDirection] = useState('sliding-enter-active');
-    const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
+    const autoScrollRef = useRef<number>();
 
     const handleNext = () => {
         setAnimateDirection('sliding-enter-active');
@@ -24,11 +24,7 @@ const Home = () => {
             handleNext();
         }, 5000);
 
-        return () => {
-            if (autoScrollRef.current) {
-                clearInterval(autoScrollRef.current);
-            }
-        };
+        return () => clearInterval(autoScrollRef.current);
     }, []);
 
     // To trigger the animation correctly on initial mount and subsequent updates
