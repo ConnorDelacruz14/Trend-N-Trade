@@ -1,5 +1,7 @@
 
+import Footer from "../../components/Footer/Footer.tsx";
 import Header from "../../components/Header/Header.tsx";
+import Sidebar from "../../components/Sidebar/sidebar.tsx";
 import './purchases.css';
 
 interface Purchase {
@@ -34,41 +36,47 @@ const test_purchases: Purchase[] = [
 
 const Purchases = () => {
 
-  return (
-    <div className="purchases-page-container">
+  return(
+    <>
       <Header />
-
-      <div className="transactions-container">
-        <h3 className="sidebar-title">Transactions</h3>
-        <div className="transactions-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {test_purchases.map((purchase, index) => (
-                <tr key={index}>
-                  <td className="product-image"><img src={purchase.image} alt="Product Image" /></td>
-                  <td className="product-name">{purchase.name}</td>
-                  <td className="product-price">${purchase.price.toFixed(2)}</td>
-                  <td className="product-quantity">{purchase.quantity}</td>
-                  <td className="product-total">${purchase.total.toFixed(2)}</td>
-                  <td className="product-status">{purchase.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <div className="Container">
+        <Sidebar />
+        <section className="sect2">
+            <div className="transactions-container">
+            <h3 className="sidebar-title">Transactions</h3>
+            <div className="transactions-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {test_purchases.map((purchase, index) => (
+                    <tr key={index}>
+                      <td className="product-image"><img src={purchase.image} alt="Product Image" /></td>
+                      <td className="product-name">{purchase.name}</td>
+                      <td className="product-price">${purchase.price.toFixed(2)}</td>
+                      <td className="product-quantity">{purchase.quantity}</td>
+                      <td className="product-total">${purchase.total.toFixed(2)}</td>
+                      <td className="product-status">{purchase.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
-  );
+      <Footer /> 
+    </>
+  )
+  
 };
 
 export default Purchases;

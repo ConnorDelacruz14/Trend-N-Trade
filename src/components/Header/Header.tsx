@@ -17,14 +17,11 @@ const Header = () => {
           </div>
           <input type="text" placeholder="Search here..." />
         </div>
-        <button>Search</button>
+        <a href="/search" className = "search"><button>Search</button></a>
       </div>
       <div className="func">
         <li>
-          <Link to="/Payment">Payment</Link>
-        </li>
-        <li>
-          <Link to="/help">Help</Link>
+          <Link to="/Payment">Account</Link>
         </li>
         <li>
           <Link to="/About">About</Link>
@@ -33,10 +30,13 @@ const Header = () => {
           <Link to="/cart">Cart</Link>
         </li>
         <li>
-          <Link to="/Contact">Contact</Link>
+          <Link to="/Contact">Contact Us</Link>
         </li>
         <li>
-          <Link to="/Home">Profile</Link>
+          <Link to="/Home">My Listings</Link>
+        </li>
+        <li>
+          <Link to="/Login">Login</Link>
         </li>
       </div>
     </div>

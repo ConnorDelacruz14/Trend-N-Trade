@@ -23,7 +23,7 @@ span {
 }
 
 .Container .sect1 .inner-sec1:hover {
-  background-color: #d03838;
+  background-color: #e35353;
 }
 
 @media (max-width: 460px) {

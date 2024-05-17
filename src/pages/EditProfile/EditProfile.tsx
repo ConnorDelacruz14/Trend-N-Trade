@@ -2,6 +2,8 @@ import { useState, ChangeEvent, useMemo } from "react";
 import "./editprofile.css";
 import Header from "../../components/Header/Header.tsx";
 import { IoStar, IoStarHalfOutline, IoStarOutline } from "react-icons/io5";
+import Footer from "../../components/Footer/Footer.tsx";
+import Sidebar from "../../components/Sidebar/sidebar.tsx";
 
 interface SocialLinks {
   instagram: string;
@@ -80,10 +82,13 @@ const EditProfile = () => {
     console.log("Saved changes:", { name, description, major, selectedTags, socialLinks });
   };
 
-  return (
-    <div className="edit-page-container">
+  return(
+    <>
       <Header />
-      <div className="edit-page">
+      <div className="Container">
+        <Sidebar />
+        <section className="sect2">
+        <div className="edit-page">
         <div className="profile-bar">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/256px-Default_pfp.svg.png"
@@ -175,9 +180,12 @@ const EditProfile = () => {
         </div>
         
       </div>
-     
-    </div>
-  );
+        </section>
+      </div>
+      <Footer /> 
+    </>
+  )
+
 };
 
 export default EditProfile;

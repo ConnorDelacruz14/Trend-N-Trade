@@ -40,7 +40,7 @@
 
 .input-box .search-icon {
   font-size: 24px;
-  color: #707070;
+  color:  #da2121; 
 }
 
 .input-box input {
@@ -56,10 +56,10 @@
 
 .input-box button {
   font-size: 16px;
-  color: black;
+  color: white;
   border: 2px solid #ccc;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: #da2121;
   cursor: pointer;
   height: 30px;
   width: 100px;
@@ -82,4 +82,8 @@
   font-size: clamp(0.75rem, 0.6429rem + 0.5357vw, 1.125rem);
   color: black;
   text-decoration: none;
+}
+
+.search{
+  color: #e53533;
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './sidebar.css';
 
 const Sidebar = () => {
@@ -7,14 +8,19 @@ const Sidebar = () => {
         <h3>Account</h3>
         <h4>Transactions</h4>
         <div className="inner-sec1">
-          <span>Purchases & Sales</span>
+          <Link to="/purchases"><span>Purchases and Sales</span></Link>
         </div>
         <div className="inner-sec1">
-          <span>Payment Methods</span>
+          <Link to="/payment"><span>Payment Methods</span></Link>
         </div>
         <h4>Saves</h4>
         <div className="inner-sec1">
           <span>Saved items</span>
+        </div>
+        <h4>Profile Info</h4>
+        <div className="inner-sec1">
+          <Link to="/edit"><span>Edit Profile</span></Link>
+          
         </div>
       </div>
     </section>

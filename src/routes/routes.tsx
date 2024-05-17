@@ -26,7 +26,7 @@ const AppRoutes: React.FC = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/listing" element={<Listing />} />
+                    <Route path="/listing/:listingId" element={<Listing />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/login" element={<Login/>}></Route>
                     <Route path="/Home" element={<Profile />} />

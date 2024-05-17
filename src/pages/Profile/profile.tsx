@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 
@@ -10,31 +11,6 @@ export default function Home() {
       <Header />
         <main>
           <section className="desc">
-            <ul>
-              <div>
-                <li>
-                  <img src="/img/profile.jpeg" alt="profile" />
-                </li>
-              </div>
-              <div className="details">
-                <li>Name</li>
-                <li>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                  <i className="fa fa-star" aria-hidden="true"></i> 5.0
-                </li>
-                <li>
-                  <button type="button">Edit Profile</button>
-                </li>
-              </div>
-              <div>
-                <li>
-                  <textarea placeholder="Description"></textarea>
-                </li>
-              </div>
-            </ul>
           </section>
           <section className="listing">
             <h4>Listing</h4>
