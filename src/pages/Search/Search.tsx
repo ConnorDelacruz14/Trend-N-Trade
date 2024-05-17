@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header.tsx";
 const Search = () => {
 
     const [productsList, setProducts] = useState([
-        { id: 1, category: "clothing", brand: "not nike", size: "M", price: 9.99, condition: "new", image: "/src/img/shirt1.jpg", name: "Casual Shirt - Green" },
+        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 35.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
         { id: 2, category: "clothing", brand: "not nike", size: "M", price: 6.99, condition: "new", image: "/src/img/shirt2.jpeg", name: "Tee shirt - Blue" },
         { id: 3, category: "clothing", brand: "not nike", size: "M", price: 15.99, condition: "new", image: "/src/img/pants1.jpeg", name: "Khaki Pants" },
         { id: 4, category: "clothing", brand: "not nike", size: "M", price: 4.99, condition: "new", image: "/src/img/socks.jpg", name: "Full Socks - Yellow" },
@@ -17,7 +17,7 @@ const Search = () => {
 
     const productItems = productsList.map(product => (
         <li key={product.id} className="product" data-category={product.category} data-brand={product.brand} data-size={product.size} data-price={product.price} data-condition={product.condition}>
-            <img src={product.image} alt="" /><br /><a href="product.html">{product.name}</a><br /> ${product.price}
+            <img src={product.image} alt="" /><br /><a href={`listing/${product.id}`}>{product.name}</a><br /> ${product.price}
         </li>
     ));
 
@@ -30,7 +30,6 @@ const Search = () => {
         const price = document.querySelector(".price-toggle") as HTMLElement;
         const priceFilter = document.querySelector('.wrapper') as HTMLElement;
 
-        if (!price || !priceFilter) return; // Check if either price or priceFilter is null or undefined
 
         //gpt assisted for this section of checkfilter
         function checkFilter(product: HTMLElement) {
@@ -83,9 +82,9 @@ const Search = () => {
             applyFilters();
         });
 
-        price.addEventListener('click', function () {
+        /*price.addEventListener('click', function () {
             priceFilter.style.display = priceFilter.style.display == 'block' ? 'none' : 'block';
-        });
+        });*/
 
         document.querySelector('.price-buttons .done')?.addEventListener('click', function () {
             console.log('Filters applied:', {
@@ -139,9 +138,9 @@ const Search = () => {
                         <option value="new">New</option>
                     </select>
 
-                    <button className="price-toggle">
+                    {/* <button className="price-toggle">
                         Edit Price
-                    </button>
+                    </button> */}
                 </div>
 
                 <span className="wrapper">

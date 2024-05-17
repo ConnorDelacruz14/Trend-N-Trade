@@ -1,6 +1,7 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useMemo } from "react";
 import "./editprofile.css";
 import Header from "../../components/Header/Header.tsx";
+import { IoStar, IoStarHalfOutline, IoStarOutline } from "react-icons/io5";
 
 interface SocialLinks {
   instagram: string;
@@ -8,9 +9,35 @@ interface SocialLinks {
   facebook: string;
 }
 
+const seller_profile = {
+  id: 1986735,
+  name: "jamielinn",
+  rating: 3.5,
+  pfp: "https://media-photos.depop.com/b0/17502360/777019148_c72db465b6aa4c8f861f4c56e4d055dd/U2.jpg",
+  description: "random stuff"
+}
+
+const generateStars = (rating: number) => {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 !== 0;
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+  return (
+      <>
+          {Array(fullStars).fill(<IoStar key={Math.random()} color="#ff2300" />)}
+          {halfStar && <IoStarHalfOutline key={Math.random()} color="#ff2300"/>}
+          {Array(emptyStars).fill(<IoStarOutline key={Math.random()} color="#ff2300"/>)}
+      </>
+  );
+};
+
 const EditProfile = () => {
+  
+  const seller = seller_profile;
+  const stars = useMemo(() => generateStars(seller.rating), [seller.rating]);
+  const ratingNumber = seller.rating;
   const [name, setName] = useState<string>("Name");
-  const [description, setDescription] = useState<string>("");
+  const [description, setDescription] = useState<string>(seller.description);
   const [major, setMajor] = useState<string>("Computer Science");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [socialLinks, setSocialLinks] = useState<SocialLinks>({
@@ -18,6 +45,8 @@ const EditProfile = () => {
     twitter: "https://twitter.com",
     facebook: "https://facebook.com"
   });
+
+  
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -68,12 +97,8 @@ const EditProfile = () => {
             className="name"
           />
           <span className="rating">
-            <img src="/star.svg" alt="star" />
-            <img src="/star.svg" alt="star" />
-            <img src="/star.svg" alt="star" />
-            <img src="/star.svg" alt="star" />
-            <img src="/star.svg" alt="star" />
-            <strong className="rating-number">5.0</strong>
+          <div className="rating-stars">{stars}</div>
+            <strong className="rating-number">{ratingNumber}</strong>
           </span>
           <textarea
             id="description"
