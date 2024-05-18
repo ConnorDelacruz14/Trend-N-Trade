@@ -1,6 +1,6 @@
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-
+import Sidebar from "../../components/Sidebar/sidebar.tsx";
 import './saveditems.css';
 
 export default function Home() {
@@ -8,9 +8,8 @@ export default function Home() {
         <div>
             <>
                 <Header />
-                <main>
-                    <section className="desc">
-                    </section>
+                <div className="Container">
+                    <Sidebar />
                     <section className="listing">
                         <h4>Saved Items</h4>
                         <ul>
@@ -51,7 +50,7 @@ export default function Home() {
                             </li>
                         </ul>
                     </section>
-                </main>
+                </div>
             </>
             <Footer />
         </div>

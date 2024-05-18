@@ -79,3 +79,8 @@
     scale: 1.05;
     cursor: pointer;
 }
+
+.Container {
+    display: flex;
+    height: 76vh;
+}

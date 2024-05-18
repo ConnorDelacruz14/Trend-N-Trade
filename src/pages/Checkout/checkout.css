@@ -1,0 +1,113 @@
+/* src/pages/checkout.css */
+
+.card {
+    width: 80%;
+    max-width: 800px;
+    margin: 40px auto 0;
+    background-color: #f1efef;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.checkout-page {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-summary,
+.shipping-payment-info {
+    width: 48%;
+}
+
+.order-summary {
+    border-right: 2px solid #ccc;
+    padding-right: 20px;
+}
+
+.shipping-payment-info {
+    padding-left: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #da2121;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#order-button {
+    width: 93%;
+    padding: 10px 15px;
+    background-color: #da2121;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#order-button:hover {
+    background-color: #da2121;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li::before {
+    content: "•";
+    color: #da2121;
+    margin-right: 10px;
+}
