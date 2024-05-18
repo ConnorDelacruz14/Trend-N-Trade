@@ -183,7 +183,7 @@ const CartItem: React.FC<CartItemProps> = ({ listing, sellerProfileId, onRemoveI
                         <div>Total</div>
                         <div>US${(parseFloat(listing.listingPrice) * 1.20).toFixed(2)}</div>
                     </div>
-                    <button>Checkout 1 Item</button>
+                    <button onClick={() => location.href = "/Checkout"}>Checkout 1 Item</button>
                 </div>
             </div>
         </div>
