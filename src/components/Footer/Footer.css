@@ -2,4 +2,6 @@ footer {
   text-align: center;
   align-items: center;
   align-content: center;
+  margin-top: 40px;
+  background-color: rgb(243, 243, 243);
 }
