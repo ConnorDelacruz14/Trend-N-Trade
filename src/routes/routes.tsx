@@ -22,7 +22,7 @@ const Checkout = lazy(() => import('../pages/Checkout/Checkout'))
 const SavedItems = lazy(() => import('../pages/SavedItems/SavedItems'))
 const Offers = lazy(() => import('../pages/Offers/Offers'))
 const Trades = lazy(() => import('../pages/Trades/Trades'))
-
+const EditListing = lazy(() => import('../pages/EditListing/EditListing'))
 
 const AppRoutes: React.FC = () => {
     return (
@@ -33,22 +33,21 @@ const AppRoutes: React.FC = () => {
                     <Route path="/listing/:listingId" element={<Listing />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/login" element={<Login/>}></Route>
-                    <Route path="/Home" element={<Profile />} />
-                    <Route path="/About" element={<About />} />
-                    <Route path="/Payment" element={<Payment />} />
-                    <Route path="/Contact" element={<Contact />} />
-                    <Route path="/Cart" element={<Cart />} />
-                    <Route path="/Help" element={<Help />} />
-                    <Route path="/Profile" element={<Profile />} />
+                    <Route path="/home" element={<Profile />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/payment" element={<Payment />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/help" element={<Help />} />
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/edit" element={<EditProfile />} />
                     <Route path="/search" element={<Search />} />
                     <Route path="/purchases" element={<Purchases/>} />
                     <Route path="/offers" element={<Offers/>} />
                     <Route path="/trades" element={<Trades/>} />
-                    <Route path="/SavedItems" element={<SavedItems/>} />
-                    <Route path="/Checkout" element={<Checkout/>} />
-
-
+                    <Route path="/saveditems" element={<SavedItems/>} />
+                    <Route path="/checkout" element={<Checkout/>} />
+                    <Route path="/edit-listing" element={<EditListing />} />
                 </Routes>
             </Suspense>
         </Router>
