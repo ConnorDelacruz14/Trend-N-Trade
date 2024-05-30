@@ -7,7 +7,7 @@ const Header = () => {
     <div className="page-header">
       <div>
         <Link to="/">
-          <img src="/public/logo.png" alt="TNT-logo" />
+          <img src="/logo.png" alt="TNT-logo" />
         </Link>
       </div>
       <div className="input-box">
