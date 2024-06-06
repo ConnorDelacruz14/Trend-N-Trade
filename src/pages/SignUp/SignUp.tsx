@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Header from "../../components/Header/Header";
 import './signup.css';
+import { fetchData } from '../../api';
 
 interface FormData {
     firstName: string;
@@ -23,6 +24,7 @@ const SignUp: React.FC = () => {
         username: '',
         password: ''
     });
+
     const [errors, setErrors] = useState<Errors>({});
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +36,7 @@ const SignUp: React.FC = () => {
         if (errors[name]) {
             setErrors(prevErrors => ({
                 ...prevErrors,
-                [name]: undefined // or use `null` based on your error display logic
+                [name]: undefined // Clear error message
             }));
         }
     };
@@ -50,12 +52,40 @@ const SignUp: React.FC = () => {
         return newErrors;
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        console.log("called");
         event.preventDefault();
         const formErrors = validateForm();
         if (Object.keys(formErrors).length === 0) {
-            console.log('Form Data:', formData);
-            // Proceed with submitting the data to a server or API
+            try {
+                const userData = {
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    username: formData.username,
+                    email: formData.email,
+                    password: formData.password, // Include password field
+                };
+
+                console.log('Submitting user data:', userData);
+
+                const response = await fetchData('/api/user/createUser', [], userData, 'POST');
+
+                if (!response.ok) {
+                    throw new Error('Sign up failed');
+                }
+
+                // Optionally handle success, e.g., show a success message
+                setErrors({});
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    username: '',
+                    password: ''
+                });
+            } catch (error) {
+                setErrors(formErrors);
+            }
         } else {
             setErrors(formErrors);
         }
@@ -70,29 +100,29 @@ const SignUp: React.FC = () => {
                     <div className="signup-names-input">
                         <div className="signup-input">
                             <label htmlFor="firstName">First name</label>
-                            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange}/>
-                            <p className={"error " + errors.firstName ? "shown" : ""}>{errors.firstName}</p>
+                            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+                            {errors.firstName && <p className="error">{errors.firstName}</p>}
                         </div>
                         <div className="signup-input">
                             <label htmlFor="lastName">Last name</label>
-                            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange}/>
-                            <p className={"error " + errors.lastName ? "shown" : ""}>{errors.lastName}</p>
+                            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
+                            {errors.lastName && <p className="error">{errors.lastName}</p>}
                         </div>
                     </div>
                     <div className="signup-input">
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" value={formData.email} onChange={handleChange}/>
-                        <p className={"error " + errors.email ? "shown" : ""}>{errors.email}</p>
+                        <input type="email" name="email" value={formData.email} onChange={handleChange} />
+                        {errors.email && <p className="error">{errors.email}</p>}
                     </div>
                     <div className="signup-input">
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" value={formData.username} onChange={handleChange}/>
-                        <p className={"error " + errors.username ? "shown" : ""}>{errors.username}</p>
+                        <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                        {errors.username && <p className="error">{errors.username}</p>}
                     </div>
                     <div className="signup-input">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" value={formData.password} onChange={handleChange}/>
-                        <p className={"error " + errors.password ? "shown" : ""}>{errors.password}</p>
+                        <input type="password" name="password" value={formData.password} onChange={handleChange} />
+                        {errors.password && <p className="error">{errors.password}</p>}
                     </div>
                     <button className="signup-button-confirm" type="submit">Sign up</button>
                 </form>

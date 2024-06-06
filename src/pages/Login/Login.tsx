@@ -1,6 +1,7 @@
 import './login.css';
 import Header from "../../components/Header/Header.tsx";
 import {ChangeEvent, FormEvent, useState} from "react";
+import { fetchData } from '../../api/index.ts';
 
 interface FormData {
     email: string;
@@ -11,7 +12,7 @@ interface Errors {
     [key: string]: string | undefined;
 }
 
-const Login= () => {
+const Login = () => {
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: ''
@@ -28,7 +29,7 @@ const Login= () => {
         if (errors[name]) {
             setErrors(prevErrors => ({
                 ...prevErrors,
-                [name]: undefined // or use `null` based on your error display logic
+                [name]: undefined // Clear error message
             }));
         }
     };
@@ -41,12 +42,48 @@ const Login= () => {
         return newErrors;
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formErrors = validateForm();
         if (Object.keys(formErrors).length === 0) {
-            console.log('Form Data:', formData);
-            // Proceed with submitting the data to a server or API
+            try {
+            
+
+                const userData = {
+                        email: formData.email,
+                        password: formData.password
+                };
+
+                const response = await fetchData('/api/user/login', [], userData, 'POST');
+                console.log(response);
+
+                const responseString = JSON.stringify(response);
+                console.log(responseString)
+
+                if (responseString === '{"error":"Invalid username or password"}') {
+                    throw new Error('Login failed');
+                }
+                
+                console.log("success");
+
+                const token = JSON.stringify(response);
+                console.log(token);
+                localStorage.setItem('token', token);
+
+                
+
+                 // Store token in localStorage
+
+                console.log('login success')
+                // Optionally redirect to another page upon successful login
+            } catch (error) {
+                console.log('error');
+
+                setErrors(prevErrors => ({
+                    password : 'Username or password incorrect',
+                }));
+
+            }
         } else {
             setErrors(formErrors);
         }
@@ -60,17 +97,17 @@ const Login= () => {
                     <h2>Login</h2>
                     <div className="login-input">
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" value={formData.email} onChange={handleChange}/>
-                        <p className={"error " + errors.email ? "shown" : ""}>{errors.email}</p>
+                        <input type="email" name="email" value={formData.email} onChange={handleChange} />
+                        {errors.email && <p className="error">{errors.email}</p>}
                     </div>
                     <div className="login-input">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" value={formData.password} onChange={handleChange}/>
-                        <p className={"error " + errors.password ? "shown" : ""}>{errors.password}</p>
+                        <input type="password" name="password" value={formData.password} onChange={handleChange} />
+                        {errors.password && <p className="error">{errors.password}</p>}
                     </div>
-                    <button className="login-button-confirm" type="submit">Login</button>
+                    <button className="login-button-confirm" name="submit" type="submit">Login</button>
                 </form>
-                <a href="/signup">Don't have an account? Sign in here</a>
+                <a href="/signup">Don't have an account? Sign up here</a>
             </div>
         </div>
     );
