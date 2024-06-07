@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Header from "../../components/Header/Header";
 import './signup.css';
 import { fetchData } from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 interface FormData {
     firstName: string;
@@ -17,6 +18,7 @@ interface Errors {
 
 
 const SignUp: React.FC = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState<FormData>({
         firstName: '',
         lastName: '',
@@ -83,6 +85,7 @@ const SignUp: React.FC = () => {
                     username: '',
                     password: ''
                 });
+                navigate("/Login");
             } catch (error) {
                 setErrors(formErrors);
             }

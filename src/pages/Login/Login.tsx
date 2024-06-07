@@ -2,6 +2,7 @@ import './login.css';
 import Header from "../../components/Header/Header.tsx";
 import {ChangeEvent, FormEvent, useState} from "react";
 import { fetchData } from '../../api/index.ts';
+import {useNavigate} from 'react-router-dom';
 
 interface FormData {
     email: string;
@@ -13,6 +14,7 @@ interface Errors {
 }
 
 const Login = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: ''
@@ -76,10 +78,13 @@ const Login = () => {
 
                  // Store token in localStorage
 
-                console.log('login success')
+                console.log('login success');
+                navigate('/');
+
                 // Optionally redirect to another page upon successful login
             } catch (error) {
                 console.log('error');
+                console.log(error);
 
                 setErrors(prevErrors => ({
                     password : 'Username or password incorrect',
