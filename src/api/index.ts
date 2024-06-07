@@ -3,6 +3,19 @@ const URL = "http://localhost:5050";
 export async function fetchData(route: string, queryParams: never[], body: any, type: string) {
     let fullUrl = `${URL}${route}`;
 
+    // Retrieve token from localStorage
+    const token = localStorage.getItem('token');
+
+    // Initialize headers
+    const headers: { [key: string]: string } = {
+        'Content-Type': 'application/json'
+    };
+
+    // Add token to headers if it exists
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+
     if (type === "GET") {
         // Convert queryParams array into a query string
         const queryString = queryParams.map(param => `${encodeURIComponent(param[0])}=${encodeURIComponent(param[1])}`).join('&');
@@ -13,9 +26,7 @@ export async function fetchData(route: string, queryParams: never[], body: any, 
         try {
             const response = await fetch(fullUrl, {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers
             });
 
             return await response.json();
@@ -27,9 +38,7 @@ export async function fetchData(route: string, queryParams: never[], body: any, 
         try {
             const response = await fetch(fullUrl, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers,
                 body: JSON.stringify(body)
             });
 

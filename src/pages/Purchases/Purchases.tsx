@@ -1,82 +1,71 @@
-
+import { useEffect, useState } from 'react';
 import Footer from "../../components/Footer/Footer.tsx";
 import Header from "../../components/Header/Header.tsx";
 import Sidebar from "../../components/Sidebar/sidebar.tsx";
 import './purchases.css';
+import { fetchData } from '../../api/index.ts';
 
 interface Purchase {
-  image: string;
-  name: string;
-  price: number;
-  quantity: number;
-  total: number;
-  status: string;
+    image: string;
+    name: string;
+    listingPrice: number;
+    purchaseStatus: string;
 }
 
-const test_purchases: Purchase[] = [
-  {
-    image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg",
-    name: "Disney Men's White T-shirt",
-    price: 35.00,
-    quantity: 1,
-    total: 35.00,
-    status: "Shipped",
-  },
-  {
-    image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg",
-    name: "Disney Men's White T-shirt",
-    price: 35.00,
-    quantity: 1,
-    total: 35.00,
-    status: "Shipped",
-  }
-
-  
-];
-
 const Purchases = () => {
+    const [purchases, setPurchases] = useState<Purchase[]>([]);
+    const [error, setError] = useState<string | null>(null);
 
-  return(
-    <>
-      <Header />
-      <div className="Container">
-        <Sidebar />
-        <section className="sect2">
-            <div className="transactions-container">
-            <h3 className="sidebar-title">Transactions</h3>
-            <div className="transactions-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {test_purchases.map((purchase, index) => (
-                    <tr key={index}>
-                      <td className="product-image"><img src={purchase.image} alt="Product Image" /></td>
-                      <td className="product-name">{purchase.name}</td>
-                      <td className="product-price">${purchase.price.toFixed(2)}</td>
-                      <td className="product-quantity">{purchase.quantity}</td>
-                      <td className="product-total">${purchase.total.toFixed(2)}</td>
-                      <td className="product-status">{purchase.status}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+    useEffect(() => {
+        const fetchPurchases = async () => {
+            try {
+                const data = await fetchData('/api/user/getPurchases', [], {}, 'GET');
+                setPurchases(data);
+            } catch (error) {
+                setError('Login to get purchases');
+            }
+        };
+
+        fetchPurchases();
+    }, []);
+
+
+    return (
+        <>
+            <Header />
+            <div className="Container">
+                <Sidebar />
+                <section className="sect2">
+                    <div className="transactions-container">
+                        <h3 className="sidebar-title">Transactions</h3>
+                        <div className="transactions-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Product Name</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {purchases.map((purchase, index) => (
+                                        <tr key={index}>
+                                            <td className="product-image"><img src={purchase.image} alt="Product" /></td>
+                                            <td className="product-name">{purchase.name}</td>
+                                            <td className="product-total">${purchase.listingPrice}</td>
+                                            <td className="product-status">{purchase.purchaseStatus}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
             </div>
-          </div>
-        </section>
-      </div>
-      <Footer /> 
-    </>
-  )
-  
+            <Footer /> 
+        </>
+    );
 };
 
 export default Purchases;

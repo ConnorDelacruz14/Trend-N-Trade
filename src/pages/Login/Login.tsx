@@ -55,6 +55,8 @@ const Login = () => {
                 };
 
                 const response = await fetchData('/api/user/login', [], userData, 'POST');
+
+
                 console.log(response);
 
                 const responseString = JSON.stringify(response);
@@ -66,7 +68,7 @@ const Login = () => {
                 
                 console.log("success");
 
-                const token = JSON.stringify(response);
+                const token = response.token;
                 console.log(token);
                 localStorage.setItem('token', token);
 
