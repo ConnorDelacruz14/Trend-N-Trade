@@ -49,14 +49,20 @@ const Purchases = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {purchases.map((purchase, index) => (
-                                        <tr key={index}>
-                                            <td className="product-image"><img src={purchase.image} alt="Product" /></td>
-                                            <td className="product-name">{purchase.name}</td>
-                                            <td className="product-total">${purchase.listingPrice}</td>
-                                            <td className="product-status">{purchase.purchaseStatus}</td>
-                                        </tr>
-                                    ))}
+                                    {purchases.length > 0 ? (
+                                      purchases.map((purchase, index) => (
+                                          <tr key={index}>
+                                              <td className="product-image"><img src={purchase.image} alt="Product" /></td>
+                                              <td className="product-name">{purchase.name}</td>
+                                              <td className="product-total">${purchase.listingPrice}</td>
+                                              <td className="product-status">{purchase.purchaseStatus}</td>
+                                          </tr>
+                                      ))
+                                  ) : (
+                                      <tr>
+                                          <td>No purchases found. Or Log in Again</td>
+                                      </tr>
+                                  )}
                                 </tbody>
                             </table>
                         </div>

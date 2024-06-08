@@ -60,11 +60,9 @@
 .profile-bar {
     display: flex;
     align-items: center;
-    padding: 10px;
 }
 
 .profile-bar img {
-    margin-left: 200px;
     margin-right: 10px;
 }
 

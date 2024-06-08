@@ -47,7 +47,20 @@ export async function fetchData(route: string, queryParams: never[], body: any, 
             console.error('POST request failed:', error);
             throw error;
         }
-    } else {
+    } else if (type === "PUT") {
+        try {
+            const response = await fetch(fullUrl, {
+                method: 'PUT',
+                headers,
+                body: JSON.stringify(body)
+            });
+
+            return await response.json();
+        } catch (error) {
+            console.error('PUT request failed:', error);
+            throw error;
+        }
+    }else {
         throw new Error('Unsupported request type');
     }
 }
