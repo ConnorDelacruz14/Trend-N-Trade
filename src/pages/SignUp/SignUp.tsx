@@ -55,7 +55,6 @@ const SignUp: React.FC = () => {
     };
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        console.log("called");
         event.preventDefault();
         const formErrors = validateForm();
         if (Object.keys(formErrors).length === 0) {
@@ -70,13 +69,11 @@ const SignUp: React.FC = () => {
 
                 console.log('Submitting user data:', userData);
 
-                const response = await fetchData('/api/user/createUser', [], userData, 'POST');
+                await fetchData('/api/user/createUser', [], userData, 'POST');
 
-                if (!response.ok) {
-                    throw new Error('Sign up failed');
-                }
-
+                console.log("hi");
                 // Optionally handle success, e.g., show a success message
+                navigate("/login");
                 setErrors({});
                 setFormData({
                     firstName: '',
@@ -85,8 +82,9 @@ const SignUp: React.FC = () => {
                     username: '',
                     password: ''
                 });
-                navigate("/Login");
+                
             } catch (error) {
+                console.log(error);
                 setErrors(formErrors);
             }
         } else {
