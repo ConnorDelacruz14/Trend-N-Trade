@@ -25,7 +25,7 @@ const Payment: React.FC = () => {
 
   const fetchCardInfo = async () => {
     try {
-      const response = await fetchData('/api/user/getCards', [], null, 'GET');
+      const response = await fetchData('/api/user/getCards', [], {}, 'GET');
       console.log(response);
       if (response && response.cards) {
         setCards(response.cards); // Assuming response.cards is in the format of Card[]
