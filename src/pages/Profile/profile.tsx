@@ -1,60 +1,59 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-
 import './profile.css';
+import { fetchData } from "../../api";
 
-export default function Home() {
-  return (
-    <div>
-      <>
-      <Header />
-        <main>
-          <section className="desc">
-          </section>
-          <section className="listing">
-            <h4>Listing</h4>
-            <ul>
-              <li>
-                <img src="/img/shirt1.jpg" alt="" />
-                Casual Shirt - Green <br /> $9.99{" "}
-              </li>
-              <li>
-                <img src="/img/shirt2.jpeg" alt="" />
-                Tee Shirt - Blue <br /> $6.99
-              </li>
-              <li>
-                <img src="/img/pants1.jpeg" alt="" />
-                Cotton Pants - Khaki <br /> $15.99
-              </li>
-              <li>
-                <img src="/img/socks.jpg" alt="" />
-                Full Socks - Yellow <br /> $4.99
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src="/img/pants2.jpeg" alt="" />
-                Cotton Pants - Navy <br /> $17.99
-              </li>
-              <li>
-                <img src="/img/watch1.jpeg" alt="" />
-                Smart Watch Pro - Blue
-                <br /> $49.99
-              </li>
-              <li>
-                <img src="/img/shoes1.jpg" alt="" />
-                Hoka Shoes <br /> $89.99
-              </li>
-              <li>
-                <img src="/img/shoes2.jpg" alt="" />
-                Sky Shoes - Sky Blue <br /> $99.99
-              </li>
-            </ul>
-          </section>
-        </main>
-        <Footer />
-      </>
-    </div>
-  );
+interface Listing {
+    id: string;
+    image: string;
+    name: string;
+    listingPrice: number;
+    purchaseStatus: string;
 }
+
+const HomeFeed = () => {
+    const [listings, setListings] = useState<Listing[]>([]);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchListings = async () => {
+            try {
+                const data = await fetchData('/api/user/getSales', [], {}, 'GET');
+                const filteredData = (data as Listing[]).filter(listing => listing.purchaseStatus == 'notPurchased');
+                setListings(filteredData);
+            } catch (error) {
+                setError('Failed to fetch listings. Please login to view your listings.');
+            }
+        };
+
+        fetchListings();
+    }, []);
+
+    return (
+        <div>
+            <Header />
+            <main>
+                <section className="desc">
+                    {/* Add any additional description or content here */}
+                </section>
+                <section className="listing">
+                    <h4>My Listings</h4>
+                    {error && <p className="error">{error}</p>}
+                    <ul>
+                        {listings.map(listing => (
+                            <li key={listing.id}>
+                                <img src={listing.image} alt={listing.name} />
+                                {listing.name} <br /> ${listing.listingPrice}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            </main>
+            <Footer />
+        </div>
+    );
+};
+
+export default HomeFeed;

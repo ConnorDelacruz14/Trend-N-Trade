@@ -26,7 +26,8 @@ const Purchases = () => {
                 const data = await fetchData('/api/user/getPurchases', [], {}, 'GET');
                 setPurchases(data);
                 const dataSales = await fetchData('/api/user/getSales', [], {}, 'GET');
-                setSales(dataSales);
+                const filteredSales = (dataSales as Purchase[]).filter(listing => listing.purchaseStatus !== 'notPurchased');
+                setSales(filteredSales);
             } catch (error) {
                 setError('Login to get purchases');
             }

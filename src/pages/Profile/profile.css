@@ -1,81 +1,100 @@
 .desc ul div li {
-    list-style: none;
-  }
-  
-  .desc ul {
-    padding: 0;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-  }
-  
-  .desc ul div li img {
-    width: 100px;
-    border: 2px solid black;
-    border-radius: 50%;
-  }
-  
-  .desc ul div li textarea {
-    padding: 4px;
-    width: 50vw;
-    height: 15vh;
-    border: 2px solid black;
-  }
-  
-  .desc ul .details li {
-    margin: 10px 0;
-  }
-  
-  .desc ul .details li button {
-    background-color: black;
-    color: white;
-    border: 2px solid black;
-    border-radius: 4px;
-    padding: 4px 14px;
-    transition: 0.5s ease-in-out;
-  }
-  
-  .desc ul .details li button:hover {
-    background-color: white;
-    color: black;
-    cursor: pointer;
-  }
-  
-  .listing {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-  }
-  .listing h4 {
-    font-size: clamp(1rem, 0.8019rem + 0.8451vw, 1.5625rem);
-  }
-  
-  .listing ul {
-    gap: 10px;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .listing ul li {
-    list-style: none;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .listing ul li img {
-    width: 170px;
-    transition: 0.5s ease-in-out;
-  }
-  
-  .listing ul li img:hover {
-    scale: 1.05;
-    cursor: pointer;
-  }
+  list-style: none;
+}
+
+.desc ul {
+  padding: 0;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.desc ul div li img {
+  width: 100px;
+  height: 100px; 
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.desc ul div li textarea {
+  padding: 4px;
+  width: 50vw;
+  height: 15vh;
+  border: 2px solid black;
+}
+
+.desc ul .details li {
+  margin: 10px 0;
+}
+
+.desc ul .details li button {
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 4px 14px;
+  transition: 0.5s ease-in-out;
+}
+
+.desc ul .details li button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.listing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.listing h4 {
+  font-size: clamp(1rem, 0.8019rem + 0.8451vw, 1.5625rem);
+  margin-bottom: 20px; 
+}
+
+.listing ul {
+  gap: 20px; 
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.listing ul li {
+  list-style: none;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200px; 
+  text-align: center;
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.listing ul li img {
+  width: 100%; 
+  max-height: 150px;
+  object-fit: cover; 
+  border-radius: 8px;
+}
+
+.listing ul li:hover {
+  transform: scale(1.05); 
+  cursor: pointer;
+}
+
+.listing ul li p {
+  margin: 8px 0; 
+  font-size: 14px; 
+  line-height: 1.4; 
+}
