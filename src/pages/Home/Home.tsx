@@ -49,9 +49,12 @@ const Home = () => {
                         <h2>Set Trends, Bargain Brilliance.</h2>
                     </div>
                     <div className="banner-buttons">
-                        <a href="/search"><button className="shop-now">Shop now</button></a>
-                        
-                        <button className="sell-now">Sell now</button>
+                        <a href="/search">
+                            <button className="shop-now">Shop now</button>
+                        </a>
+                        <a href="/edit-listing">
+                            <button className="sell-now">Sell now</button>
+                        </a>
                     </div>
                 </div>
             </div>

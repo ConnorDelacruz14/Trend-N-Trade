@@ -3,7 +3,9 @@ import { BiImageAdd } from "react-icons/bi";
 import './editlisting.css';
 import Header from "../../components/Header/Header.tsx";
 import Footer from "../../components/Footer/Footer.tsx";
-import Listing from "../../types/index.ts"
+import Listing from "../../types/index.ts";
+import { fetchData } from "../../api";
+import {useNavigate} from "react-router-dom";
 
 const defaultListing: Listing = {
     _id: "",
@@ -18,14 +20,25 @@ const defaultListing: Listing = {
     offerStatus: [],
     postingDate: new Date(),
     condition: "",
-    numLikes: 0
+    numLikes: 0,
+    purchaseStatus: "notPurchased"
 }
 
 const EditListing: React.FC = () => {
+    const navigate = useNavigate();
     const colorOptions = ['None', 'Red', 'Blue', 'Green', 'Yellow', 'Black', 'White', 'Purple', 'Orange', 'Pink', 'Brown'];
     const [selectedColor, setSelectedColor] = useState<string>('None');
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const [listing, setListing] = useState<Listing>(defaultListing);
+    const [formError, setFormError] = useState<string | null>(null);
+    const [fieldErrors, setFieldErrors] = useState({
+        name: false,
+        description: false,
+        brand: false,
+        condition: false,
+        listingPrice: false,
+        color: false
+    });
 
     const handleColorSelect = (color: string) => {
         setSelectedColor(color);
@@ -37,13 +50,41 @@ const EditListing: React.FC = () => {
         if (file) {
             const newUploadedImages = [...listing.images];
             newUploadedImages[index] = URL.createObjectURL(file);
-            setListing({...listing, images: newUploadedImages});
+            setListing({ ...listing, images: newUploadedImages });
         }
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(listing);
+
+        // Validation
+        const errors = {
+            name: !listing.name,
+            description: !listing.description,
+            brand: !listing.brand,
+            condition: !listing.condition,
+            listingPrice: !listing.listingPrice,
+            color: selectedColor === 'None'
+        };
+
+        setFieldErrors(errors);
+
+        if (Object.values(errors).some(error => error)) {
+            setFormError('Please fill out all fields.');
+            alert("Please fill out all fields");
+            return;
+        }
+
+        setFormError(null); // Clear any previous errors
+
+        await fetchData("/api/listing/create", [], listing, "POST")
+            .then(response => {
+                if (response.ok) {
+                    navigate("/Home")
+                }
+            }).catch(error => {
+                alert(error);
+            })
     };
 
     return (
@@ -52,10 +93,17 @@ const EditListing: React.FC = () => {
             <div className="edit-listing-page">
                 <form className="edit-listing-container" onSubmit={handleSubmit}>
                     <h2>List an item</h2>
+                    {formError && <div className="form-error">{formError}</div>}
+
                     <section>
-                        <h3>Name</h3>
-                        <input type="text" onChange={(e) => setListing({ ...listing, name: e.target.value })} />
+                        <h3 className="required-field">Name</h3>
+                        <input
+                            type="text"
+                            onChange={(e) => setListing({ ...listing, name: e.target.value })}
+                        />
+                        {fieldErrors.name && <div className="error-message">Name is required</div>}
                     </section>
+
                     <section className="edit-photos">
                         <h3>Photos</h3>
                         <p>Add up to 8 photos in JPEG or PNG format</p>
@@ -82,32 +130,52 @@ const EditListing: React.FC = () => {
                             ))}
                         </div>
                     </section>
+
                     <section className="edit-description">
-                        <h3>Description</h3>
-                        <textarea cols={90} rows={5} onChange={(e) => {setListing({...listing, description: e.target.value})}}></textarea>
+                        <h3 className="required-field">Description</h3>
+                        <textarea
+                            cols={90}
+                            rows={5}
+                            onChange={(e) => { setListing({ ...listing, description: e.target.value }) }}
+                        ></textarea>
+                        {fieldErrors.description && <div className="error-message">Description is required</div>}
                     </section>
+
                     <section className="edit-dropdowns">
                         <h3>Info</h3>
-                        <p>Brand</p>
-                        <input type="text" defaultValue="Other" onChange={(e) => {setListing({...listing, brand: e.target.value})}} />
-                        <p>Condition</p>
-                        <select id="edit-condition" onChange={(e) => {setListing({...listing, condition: e.target.value})}}>
+                        <p className="required-field">Brand</p>
+                        <input
+                            type="text"
+                            defaultValue="Other"
+                            onChange={(e) => { setListing({ ...listing, brand: e.target.value }) }}
+                        />
+                        {fieldErrors.brand && <div className="error-message">Brand is required</div>}
+
+                        <p className="required-field">Condition</p>
+                        <select
+                            id="edit-condition"
+                            onChange={(e) => { setListing({ ...listing, condition: e.target.value }) }}
+                        >
+                            <option value="">Select Condition</option>
                             <option value="brand-new">Brand new - Unused with original packaging or tags</option>
                             <option value="like-new">Like new - Mint condition pre-owned or new without tags</option>
                             <option value="lightly-used">Used - Lightly used but no noticeable flaws</option>
                             <option value="minor-flaws">Used - Minor flaws or signs of wear, noted in description or photos</option>
                             <option value="obvious-flaws">Used - Obvious flaws or signs of wear, noted in description or photos</option>
                         </select>
+                        {fieldErrors.condition && <div className="error-message">Condition is required</div>}
                     </section>
+
                     <section className="edit-tags">
                         <h3>Tags</h3>
                         <div className="edit-tags-container">
                             <ListingTag name="nike" />
                         </div>
                     </section>
+
                     <section className="edit-enhance">
                         <h3>Enhance your listing</h3>
-                        <p>Colors</p>
+                        <p className="required-field">Colors</p>
                         <div className="custom-dropdown">
                             <div className="custom-dropdown-selected" onClick={() => setDropdownOpen(!dropdownOpen)}>
                                 <div className="color-circle" style={{
@@ -130,16 +198,25 @@ const EditListing: React.FC = () => {
                                 </div>
                             )}
                         </div>
+                        {fieldErrors.color && <div className="error-message">Color is required</div>}
+
                         <p>Location</p>
                         <input type="text" />
                     </section>
+
                     <section className="edit-shipping">
                         <h3>Shipping</h3>
                     </section>
+
                     <section className="edit-price">
-                        <h3>Price</h3>
-                        <input type="text" onChange={(e) => setListing({...listing, listingPrice: e.target.value})} />
+                        <h3 className="required-field">Price</h3>
+                        <input
+                            type="text"
+                            onChange={(e) => setListing({ ...listing, listingPrice: e.target.value })}
+                        />
+                        {fieldErrors.listingPrice && <div className="error-message">Price is required</div>}
                     </section>
+
                     <button className="listing-submit-button" type="submit">Create Listing</button>
                 </form>
             </div>
