@@ -1,8 +1,25 @@
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import "./header.css";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check for token in localStorage
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    // Remove token from localStorage
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
+
+
   return (
     <div className="page-header">
       <div>
@@ -35,9 +52,17 @@ const Header = () => {
         <li>
           <Link to="/Home">My Listings</Link>
         </li>
-        <li>
-          <Link to="/Login">Login</Link>
-        </li>
+
+          {isLoggedIn ? (
+            <li>
+              <Link to="/Login" onClick={handleLogout}>Logout</Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/Login">Login</Link>
+            </li>
+          )}
+
       </div>
     </div>
   );

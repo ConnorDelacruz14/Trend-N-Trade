@@ -55,6 +55,7 @@ const SignUp: React.FC = () => {
     };
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        console.log("called");
         event.preventDefault();
         const formErrors = validateForm();
         if (Object.keys(formErrors).length === 0) {
