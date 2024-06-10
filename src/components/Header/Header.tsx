@@ -52,6 +52,9 @@ const Header = () => {
         <li>
           <Link to="/Home">My Listings</Link>
         </li>
+        <li>
+          <Link to="/edit-listing">Create Listing</Link>
+        </li>
 
           {isLoggedIn ? (
             <li>
