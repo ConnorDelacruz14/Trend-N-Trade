@@ -1,6 +1,6 @@
 const URL = "http://localhost:5050";
 
-export async function fetchData(route: string, queryParams: never[], body: any, type: string) {
+export async function fetchData(route: string, queryParams: never[], body: NonNullable<unknown>, type: string) {
     let fullUrl = `${URL}${route}`;
 
     // Retrieve token from localStorage

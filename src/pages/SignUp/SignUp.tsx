@@ -55,6 +55,7 @@ const SignUp: React.FC = () => {
     };
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        console.log("called");
         event.preventDefault();
         const formErrors = validateForm();
         if (Object.keys(formErrors).length === 0) {
@@ -64,27 +65,21 @@ const SignUp: React.FC = () => {
                     lastName: formData.lastName,
                     username: formData.username,
                     email: formData.email,
-                    password: formData.password, // Include password field
+                    password: formData.password,
                 };
 
-                console.log('Submitting user data:', userData);
+                await fetchData('/api/user/createUser', [], userData, 'POST')
+                    .then((res) => {
+                        if (res && res.status === 200) {
+                            navigate("/Login");
+                        } else {
+                            throw res;
+                        }
+                    }).catch(error => {
+                        alert(error.error);
+                    });
 
-                await fetchData('/api/user/createUser', [], userData, 'POST');
-
-                console.log("hi");
-                // Optionally handle success, e.g., show a success message
-                navigate("/login");
-                setErrors({});
-                setFormData({
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    username: '',
-                    password: ''
-                });
-                
             } catch (error) {
-                console.log(error);
                 setErrors(formErrors);
             }
         } else {

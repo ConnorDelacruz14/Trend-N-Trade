@@ -178,3 +178,21 @@ textarea {
     height: 100%;
     object-fit: cover;
 }
+
+.form-error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.75rem;
+    margin-top: 5px;
+}
+
+.required-field::after {
+    content: "*";
+    color: red;
+    margin-left: 5px;
+}
+

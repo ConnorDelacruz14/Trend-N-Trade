@@ -1,7 +1,7 @@
 import './login.css';
 import Header from "../../components/Header/Header.tsx";
 import {ChangeEvent, FormEvent, useState} from "react";
-import { fetchData } from '../../api/index.ts';
+import { fetchData } from '../../api';
 import {useNavigate} from 'react-router-dom';
 
 interface FormData {
@@ -65,28 +65,16 @@ const Login = () => {
                 console.log(responseString)
 
                 if (responseString === '{"error":"Invalid username or password"}') {
-                    throw new Error('Login failed');
+                    return new Error('Login failed');
                 }
-                
-                console.log("success");
 
                 const token = response.token;
-                console.log(token);
                 localStorage.setItem('token', token);
-
-                
-
-                 // Store token in localStorage
-
-                console.log('login success');
                 navigate('/');
 
                 // Optionally redirect to another page upon successful login
             } catch (error) {
-                console.log('error');
-                console.log(error);
-
-                setErrors(prevErrors => ({
+                setErrors(() => ({
                     password : 'Username or password incorrect',
                 }));
 
