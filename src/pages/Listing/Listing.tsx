@@ -78,7 +78,9 @@ const Listing = () => {
                                 <div className="listing-name">{listing?.name}</div>
                                 <div className="listing-price">${listing?.listingPrice}</div>
                                 <div className="listing-other">{listing?.otherParams ? [0] : ""}</div>
-                                <button className="listing-buy-now">Buy now</button>
+                                <a href="/checkout?listingId=66676d13125cbf4182c46e83">
+                                    <button className="listing-buy-now">Buy now</button>
+                                </a>
                                 <button className="listing-add-cart">Add to cart</button>
                                 <button className="listing-extra">Trade</button>
                                 <button className="listing-extra">Offer</button>
