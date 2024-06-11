@@ -27,6 +27,21 @@
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.Container .sect2 div .payment button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.Container .sect2 div .payment button:hover {
+  background-color: #0056b3;
 }
 
 .Container .sect2 div .payment a {
@@ -37,6 +52,51 @@
 .Container .sect2 div .payment a:hover {
   color: #e53533;
   text-decoration: none;
+}
+
+.card-form {
+  background-color: white;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.card-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.card-form button:hover {
+  background-color: #0056b3;
+}
+
+.stored-card {
+  background-color: white;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.stored-card p {
+  margin: 0;
+  font-size: 16px;
 }
 
 @media (max-width: 460px) {

@@ -44,7 +44,7 @@ const EditProfile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const data = await fetchData('/api/user/getProfile', [], null, 'GET');
+        const data = await fetchData('/api/user/getProfile', [], {}, 'GET');
         setName(data.username || "");
         setDescription(data.description || "");
         setSelectedTags(data.tags || []);
