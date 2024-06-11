@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import './profile.css';
@@ -18,17 +17,14 @@ const HomeFeed = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchListings = async () => {
-            try {
-                const data = await fetchData('/api/user/getSales', [], {}, 'GET');
-                const filteredData = (data as Listing[]).filter(listing => listing.purchaseStatus == 'notPurchased');
-                setListings(filteredData);
-            } catch (error) {
-                setError('Failed to fetch listings. Please login to view your listings.');
-            }
-        };
-
-        fetchListings();
+        try {
+            fetchData('/api/user/getSales', [], {}, 'GET')
+                .then(response => {
+                    setListings(response);
+                });
+        } catch (error) {
+            setError('Failed to fetch listings. Please login to view your listings.');
+        }
     }, []);
 
     return (
@@ -43,10 +39,12 @@ const HomeFeed = () => {
                     {error && <p className="error">{error}</p>}
                     <ul>
                         {listings.map(listing => (
-                            <li key={listing.id}>
-                                <img src={listing.image} alt={listing.name} />
-                                {listing.name} <br /> ${listing.listingPrice}
-                            </li>
+                            <a href={"/listing/" + listing.id} key={listing.id}>
+                                <li>
+                                    <img src={listing.image} alt={listing.name} height="200px" width="200px" />
+                                    {listing.name} <br /> ${listing.listingPrice}
+                                </li>
+                            </a>
                         ))}
                     </ul>
                 </section>

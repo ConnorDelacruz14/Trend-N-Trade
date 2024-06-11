@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 const Header = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     // Check for token in localStorage
@@ -32,9 +33,9 @@ const Header = () => {
           <div className="search-icon">
             <IoSearchOutline />
           </div>
-          <input type="text" placeholder="Search here..." />
+          <input type="text" placeholder="Search here..." onChange={e => setSearch(e.target.value)} />
         </div>
-        <a href="/search" className = "search"><button>Search</button></a>
+        <a href={"/search/" + search} className = "search"><button>Search</button></a>
       </div>
       <div className="func">
         <li>
@@ -50,7 +51,7 @@ const Header = () => {
           <Link to="/Contact">Contact Us</Link>
         </li>
         <li>
-          <Link to="/Home">My Listings</Link>
+          <Link to="/home">My Listings</Link>
         </li>
         <li>
           <Link to="/edit-listing">Create Listing</Link>

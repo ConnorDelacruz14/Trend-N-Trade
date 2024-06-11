@@ -3,7 +3,7 @@ import Footer from "../../components/Footer/Footer.tsx";
 import Header from "../../components/Header/Header.tsx";
 import Sidebar from "../../components/Sidebar/sidebar.tsx";
 import "../../pages/Purchases/purchases.css";
-import { fetchData } from '../../api/index.ts';
+import { fetchData } from '../../api';
 
 interface Save {
     id: string;
@@ -17,7 +17,6 @@ interface Save {
 
 const SavedItems = () => {
     const [saves, setSaves] = useState<Save[]>([]);
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchPurchases = async () => {
@@ -25,11 +24,11 @@ const SavedItems = () => {
                 const data = await fetchData('/api/user/getSaves', [], {}, 'GET');
                 setSaves(data);
             } catch (error) {
-                setError('Login to get purchases');
+                alert(error)
             }
         };
 
-        fetchPurchases();
+        fetchPurchases().then(() => {});
     }, []);
 
 

@@ -2,7 +2,8 @@ import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header.tsx";
 import { IoCartOutline, IoChatboxEllipsesOutline, IoShieldCheckmarkOutline, IoStarHalfOutline, IoStarOutline, IoStar    } from "react-icons/io5";
 import './listing.css'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {fetchData} from "../../api";
 
 interface Listing {
     id: number
@@ -13,26 +14,11 @@ interface Listing {
     listingUserId: number
     images: string[]
     listingPrice: string
-    cartStatus: number
-    offerStatus: number
+    cartStatus: []
+    offerStatus: []
     numLikes: number
     postingDate: string
     otherParams?: never[]
-}
-
-const test_listing = {
-    id: 1986735,
-    name: "Disney Men's White T-shirt",
-    tags: ["disney", "toystory", "movie"],
-    description: "Toy Story pizza planet tee size large!",
-    brand: "Disney",
-    listingUserId: 12342,
-    images: ["https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg"],
-    listingPrice: "35.00",
-    cartStatus: 2,
-    offerStatus: 4,
-    postingDate: "11 hours ago",
-    numLikes: 10,
 }
 
 const seller_profile = {
@@ -45,13 +31,14 @@ const seller_profile = {
 
 const Listing = () => {
     const { listingId } = useParams<{ listingId: string }>();
-    const listing: Listing = test_listing;
+    const [listing, setListing] = useState<Listing | null>(null);
     const seller = seller_profile;
 
     useEffect(() => {
-        fetch("http://localhost:8080/" + listingId)
-            .then(res => res.json())
-            .then(result => result)
+        fetchData("/api/listing/getListing", [], {_id: listingId}, "POST")
+            .then(response => {
+                setListing(response)
+            })
     }, [listingId]);
 
     const generateStars = (rating: number) => {
@@ -74,23 +61,23 @@ const Listing = () => {
             <div className="listing-page">
                     <div className="listing-container">
                         <div className="listing-images">
-                            <img src={listing.images[0]} alt={listing.name} />
+                            <img src={"https://media-photos.depop.com/b1/49383286/1895707432_81aa84c45249453c9e06f649ad468616/P0.jpg"} alt={listing?.name} height="640px" width="640px" />
                         </div>
                         <div className="listing-info">
                             <div className="listing-main-info-container">
                                 <div className="listing-cart">
                                     <span>
                                         <IoCartOutline color="#3d37bd"/>
-                                        {listing.cartStatus ? `In ${listing.cartStatus} people's carts` : ""}
+                                        {listing?.cartStatus ? `In ${listing?.cartStatus.length} people's carts` : "In 0 carts"}
                                     </span>
                                     <span>
                                         <IoChatboxEllipsesOutline color="#3d37bd"/>
-                                        {listing.offerStatus ? `${listing.offerStatus} offer(s) sent` : ""}
+                                        {listing?.offerStatus ? `${listing?.offerStatus.length} offer(s) sent` : "No offers received yet"}
                                     </span>
                                 </div>
-                                <div className="listing-name">{listing.name}</div>
-                                <div className="listing-price">${listing.listingPrice}</div>
-                                <div className="listing-other">{listing.otherParams ? [0] : ""}</div>
+                                <div className="listing-name">{listing?.name}</div>
+                                <div className="listing-price">${listing?.listingPrice}</div>
+                                <div className="listing-other">{listing?.otherParams ? [0] : ""}</div>
                                 <button className="listing-buy-now">Buy now</button>
                                 <button className="listing-add-cart">Add to cart</button>
                                 <button className="listing-extra">Trade</button>
@@ -106,11 +93,11 @@ const Listing = () => {
                                 </div>
                             </div>
                             <div className="listing-description-info">
-                                <div className="listing-description">{listing.description}</div>
-                                <div className="listing-tags">{listing.tags.map((tag) => {
+                                <div className="listing-description">{listing?.description}</div>
+                                <div className="listing-tags">{listing?.tags.map((tag) => {
                                     return "#" + tag + " "
                                 })}</div>
-                                <div className="listing-date">Listed {listing.postingDate}</div>
+                                <div className="listing-date">Listed {listing?.postingDate}</div>
                             </div>
                             <div className="listing-profile-info">
                                 <div className="profile-info">

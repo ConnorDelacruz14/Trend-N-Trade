@@ -1,36 +1,54 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import "./search.css";
 import Header from "../../components/Header/Header.tsx";
+import {useParams} from "react-router-dom";
+import {fetchData} from "../../api";
+
+interface Listing {
+    id: number
+    name: string
+    tags: string[]
+    description: string
+    condition: string
+    brand: string
+    listingUserId: number
+    images: string[]
+    listingPrice: string
+    cartStatus: []
+    offerStatus: []
+    numLikes: number
+    postingDate: string
+    otherParams?: never[]
+}
 
 const Search = () => {
+    const {term} = useParams<{term: string}>();
+    const [productsList, setProducts] = useState<Listing[]>([]);
 
-    const [productsList, setProducts] = useState([
-        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 35.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
-        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 5.00, condition: "heavily used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
-        { id: 1986735, category: "clothing", brand: "Disney", size: "L", price: 25.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
-        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 15.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
-        { id: 1986735, category: "clothing", brand: "Disney", size: "S", price: 115.00, condition: "new", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
-        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 30.00, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
-        { id: 1986735, category: "clothing", brand: "Disney", size: "XL", price: 35.99, condition: "Lightly used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
-        { id: 1986735, category: "clothing", brand: "Disney", size: "M", price: 12.99, condition: "used", image: "https://media-photos.depop.com/b1/43110874/1865488851_9a0a41a6a860499987d255dee637bb85/P0.jpg", name: "Disney Men's White T-shirt" },
+    useEffect(() => {
+        if (term) {
+            fetchData("/api/listing/search", [], { search: term }, "POST")
+                .then(response => {
+                    setProducts(response);
+                    console.log(response);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+    }, [term]);
 
-    ]);
-
-    const productItems = productsList.map(product => (
-        <li key={product.id} className="product" data-category={product.category} data-brand={product.brand} data-size={product.size} data-price={product.price} data-condition={product.condition}>
-            <img src={product.image} alt="" /><br /><a href={`listing/${product.id}`}>{product.name}</a><br /> ${product.price}
+    const productItems = productsList.map((listing: Listing) => (
+        <li key={listing.id} className="product" data-category={"Clothing"} data-brand={listing.brand} data-size={""} data-price={listing.listingPrice} data-condition={listing.condition}>
+            <img src={listing.images[0]} alt="" /><br /><a href={`listing/${listing.id}`}>{listing.name}</a><br /> ${listing.listingPrice}
         </li>
     ));
 
 
     useEffect(() => {
 
-        
         const filters = document.querySelectorAll('.filters select, .price-filter-inputs input');
         const products = document.querySelectorAll('.product');
-        const price = document.querySelector(".price-toggle") as HTMLElement;
-        const priceFilter = document.querySelector('.wrapper') as HTMLElement;
-
 
         //gpt assisted for this section of checkfilter
         function checkFilter(product: HTMLElement) {
@@ -101,7 +119,7 @@ const Search = () => {
         applyFilters();
 
     }, []);
-    
+
     return (
         <div className="filter-page-container">
             <Header />
