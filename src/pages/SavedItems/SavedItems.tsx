@@ -17,7 +17,6 @@ interface Save {
 
 const SavedItems = () => {
     const [saves, setSaves] = useState<Save[]>([]);
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchPurchases = async () => {
@@ -25,11 +24,11 @@ const SavedItems = () => {
                 const data = await fetchData('/api/user/getSaves', [], {}, 'GET');
                 setSaves(data);
             } catch (error) {
-                setError('Login to get purchases');
+                alert(error)
             }
         };
 
-        fetchPurchases();
+        fetchPurchases().then(() => {});
     }, []);
 
 
