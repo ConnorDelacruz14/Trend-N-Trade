@@ -1,9 +1,9 @@
-import {useNavigate, useParams} from "react-router-dom";
 import Header from "../../components/Header/Header.tsx";
 import { IoCartOutline, IoChatboxEllipsesOutline, IoShieldCheckmarkOutline, IoStarHalfOutline, IoStarOutline, IoStar    } from "react-icons/io5";
 import './listing.css'
 import {useEffect, useState} from "react";
 import {fetchData} from "../../api";
+import {useParams} from "react-router-dom";
 
 interface Listing {
     id: number
@@ -31,7 +31,6 @@ const seller_profile = {
 
 const Listing = () => {
     const { listingId } = useParams<{ listingId: string }>();
-    const navigate = useNavigate();
     const [listing, setListing] = useState<Listing | null>(null);
     const seller = seller_profile;
 
@@ -88,7 +87,7 @@ const Listing = () => {
                                 <div className="listing-name">{listing?.name}</div>
                                 <div className="listing-price">${listing?.listingPrice}</div>
                                 <div className="listing-other">{listing?.otherParams ? [0] : ""}</div>
-                                <a href="/checkout?listingId=66676d13125cbf4182c46e83">
+                                <a href={"/checkout?listingId="+listingId}>
                                     <button className="listing-buy-now">Buy now</button>
                                 </a>
                                 <button className="listing-add-cart">Add to cart</button>
