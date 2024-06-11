@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Header from "../../components/Header/Header.tsx";
 import { IoCartOutline, IoChatboxEllipsesOutline, IoShieldCheckmarkOutline, IoStarHalfOutline, IoStarOutline, IoStar    } from "react-icons/io5";
 import './listing.css'
@@ -31,6 +31,7 @@ const seller_profile = {
 
 const Listing = () => {
     const { listingId } = useParams<{ listingId: string }>();
+    const navigate = useNavigate();
     const [listing, setListing] = useState<Listing | null>(null);
     const seller = seller_profile;
 
@@ -40,6 +41,15 @@ const Listing = () => {
                 setListing(response)
             })
     }, [listingId]);
+
+    function saveItem() {
+        fetchData("/api/listing/save", [], {_id: listingId}, "POST")
+            .then((response) => {
+                if (response.ok) {
+                    alert("Saved item!")
+                }
+            })
+    }
 
     const generateStars = (rating: number) => {
         const fullStars = Math.floor(rating);
@@ -84,7 +94,7 @@ const Listing = () => {
                                 <button className="listing-add-cart">Add to cart</button>
                                 <button className="listing-extra">Trade</button>
                                 <button className="listing-extra">Offer</button>
-                                <button className="listing-extra">Save</button>
+                                <button className="listing-extra" onClick={saveItem}>Save</button>
                             </div>
                             <div className="listing-buyer-protection">
                                 <IoShieldCheckmarkOutline width={28} height={28} />
