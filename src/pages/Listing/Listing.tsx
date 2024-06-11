@@ -14,8 +14,8 @@ interface Listing {
     listingUserId: number
     images: string[]
     listingPrice: string
-    cartStatus: number
-    offerStatus: number
+    cartStatus: []
+    offerStatus: []
     numLikes: number
     postingDate: string
     otherParams?: never[]
@@ -68,11 +68,11 @@ const Listing = () => {
                                 <div className="listing-cart">
                                     <span>
                                         <IoCartOutline color="#3d37bd"/>
-                                        {listing?.cartStatus ? `In ${listing?.cartStatus} people's carts` : ""}
+                                        {listing?.cartStatus ? `In ${listing?.cartStatus.length} people's carts` : "In 0 carts"}
                                     </span>
                                     <span>
                                         <IoChatboxEllipsesOutline color="#3d37bd"/>
-                                        {listing?.offerStatus ? `${listing?.offerStatus} offer(s) sent` : ""}
+                                        {listing?.offerStatus ? `${listing?.offerStatus.length} offer(s) sent` : "No offers received yet"}
                                     </span>
                                 </div>
                                 <div className="listing-name">{listing?.name}</div>
