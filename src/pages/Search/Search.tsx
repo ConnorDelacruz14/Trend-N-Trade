@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import {fetchData} from "../../api";
 
 interface Listing {
-    id: number
+    _id: number
     name: string
     tags: string[]
     description: string
@@ -35,12 +35,23 @@ const Search = () => {
                 .catch(err => {
                     console.error(err);
                 });
+        } else {
+            fetchData("/api/listing/all", [], {}, "GET")
+                .then(response => {
+                    setProducts(response);
+                    console.log(response);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
         }
     }, [term]);
 
-    const productItems = productsList.map((listing: Listing) => (
-        <li key={listing.id} className="product" data-category={"Clothing"} data-brand={listing.brand} data-size={""} data-price={listing.listingPrice} data-condition={listing.condition}>
-            <img src={listing.images[0]} alt="" /><br /><a href={`listing/${listing.id}`}>{listing.name}</a><br /> ${listing.listingPrice}
+    const productItems = productsList?.map((listing: Listing) => (
+        <li key={listing._id} className="product" data-category={"Clothing"} data-brand={listing.brand} data-size={""}
+            data-price={listing.listingPrice} data-condition={listing.condition}>
+            <img src={listing.images[0]} alt=""/><br/><a
+            href={`http://localhost:5173/listing/${listing._id}`}>{listing.name}</a><br/> ${listing.listingPrice}
         </li>
     ));
 

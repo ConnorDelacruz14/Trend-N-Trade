@@ -61,7 +61,7 @@ const Listing = () => {
             <div className="listing-page">
                     <div className="listing-container">
                         <div className="listing-images">
-                            <img src={"https://media-photos.depop.com/b1/49383286/1895707432_81aa84c45249453c9e06f649ad468616/P0.jpg"} alt={listing?.name} height="640px" width="640px" />
+                            <img src={listing?.images[0]} alt={listing?.name} height="640px" width="640px" />
                         </div>
                         <div className="listing-info">
                             <div className="listing-main-info-container">
