@@ -27,7 +27,7 @@ export async function fetchData(route: string, queryParams: never[], body: NonNu
         try {
             const response = await fetch(fullUrl, {
                 method: 'GET',
-                headers
+                headers,
             });
 
             return await response.json();

@@ -1,24 +1,62 @@
-// src/pages/Checkout.tsx
-
-import Header from '../../components/Header/Header.tsx';
-import Footer from '../../components/Footer/Footer.tsx';
+import React, { useState, useEffect } from 'react';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import './checkout.css';
+import { fetchData } from '../../api';
+import { useLocation} from 'react-router-dom';
 
-interface Item {
-    image: string;
-    title: string;
-    price: string;
-}
 
-const testItem: Item[] = [
-    {
-        image: "https://media-photos.depop.com/b1/44652577/1852358784_1d1b614b6af34bbab81f515704dd0dbe/P0.jpg",
-        title: "Vintage Y2K Swim Shorts",
-        price: "39.99"
-    }
-];
 
-const Checkout = () => {
+const Checkout: React.FC = () => {
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const listingId = queryParams.get('listingId');
+    //console.log(listingId);
+    
+    const [image, setImage] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [listingPrice, setListingPrice] = useState<string>('');
+
+    const listingIdData = {
+        listingId: listingId
+      };
+
+    useEffect(() => {
+        const fetchListingData = async () => {
+            try {
+                console.log('ok');
+                console.log(listingIdData);
+                const response = await fetchData('/api/listing/getListingCheckout', [], listingIdData, 'PUT');
+            
+                setImage(response.image);
+                setName(response.name);
+                setListingPrice(response.listingPrice);
+              
+            } catch (error) {
+                console.error('Error fetching listing data:', error);
+            }
+        };
+
+        if (listingId) {
+            fetchListingData();
+        }
+    }, [listingId]);
+
+    const handlePlaceOrder = async () => {
+        try {
+            const response = await fetchData('/api/listing/checkoutListing', [], { listingId }, 'PUT');
+            if (response.ok) {
+                alert('Order placed successfully!');
+                // Redirect or perform further actions as needed
+            } else {
+                console.error('Failed to place order:', response);
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+        }
+    };
+
     return (
         <>
             <Header />
@@ -26,42 +64,40 @@ const Checkout = () => {
                 <div className="checkout-page">
                     <div className="order-summary">
                         <h2>Order Summary</h2>
-                        {testItem.map((trade, index) => (
-                            <div className="product" key={index}>
-                                <img className="product-image" src={trade.image} alt="Product Image" />
-                                <div className="product-info">
-                                    <p className="product-title">{trade.title}</p>
-                                    <p className="product-price">${trade.price}</p>
-                                </div>
+                        <div className="product">
+                            <img className="product-image" src={image} alt="Product Image" />
+                            <div className="product-info">
+                                <p className="product-title">{name}</p>
+                                <p className="product-price">${listingPrice}</p>
                             </div>
-                        ))}
+                        </div>
                     </div>
                     <div className="shipping-payment-info">
                         <h2>Shipping Information</h2>
                         <form>
                             <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" name="name" />
+                                <input type="text" name="name" required />
                             </div>
                             <div className="form-group">
                                 <label>Address</label>
-                                <input type="text" name="address" />
+                                <input type="text" name="address" required />
                             </div>
                             <div className="form-group">
                                 <label>City</label>
-                                <input type="text" name="city" />
+                                <input type="text" name="city" required />
                             </div>
                             <div className="form-row">
                                 <div className="form-group">
                                     <label>State</label>
-                                    <input type="text" name="state" />
+                                    <input type="text" name="state" required />
                                 </div>
                                 <div className="form-group">
                                     <label>ZIP Code</label>
-                                    <input type="text" name="zip" />
+                                    <input type="text" name="zip" required />
                                 </div>
                             </div>
-                            <button id="order-button" type="submit">Place Order</button>
+                            <button id="order-button" type="button" onClick={handlePlaceOrder}>Place Order</button>
                         </form>
                     </div>
                 </div>
