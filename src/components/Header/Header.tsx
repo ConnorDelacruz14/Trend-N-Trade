@@ -50,7 +50,7 @@ const Header = () => {
           <Link to="/Contact">Contact Us</Link>
         </li>
         <li>
-          <Link to="/Home">My Listings</Link>
+          <Link to="/home">My Listings</Link>
         </li>
 
           {isLoggedIn ? (

@@ -23,6 +23,7 @@ export async function fetchData(route: string, queryParams: never[], body: NonNu
             fullUrl += `?${queryString}`;
         }
 
+        // eslint-disable-next-line no-useless-catch
         try {
             const response = await fetch(fullUrl, {
                 method: 'GET',
@@ -31,10 +32,10 @@ export async function fetchData(route: string, queryParams: never[], body: NonNu
 
             return await response.json();
         } catch (error) {
-            console.error('GET request failed:', error);
             throw error;
         }
     } else if (type === "POST") {
+        // eslint-disable-next-line no-useless-catch
         try {
             const response = await fetch(fullUrl, {
                 method: 'POST',
@@ -44,10 +45,10 @@ export async function fetchData(route: string, queryParams: never[], body: NonNu
 
             return await response.json();
         } catch (error) {
-            console.error('POST request failed:', error);
             throw error;
         }
     } else if (type === "PUT") {
+        // eslint-disable-next-line no-useless-catch
         try {
             const response = await fetch(fullUrl, {
                 method: 'PUT',
@@ -57,10 +58,9 @@ export async function fetchData(route: string, queryParams: never[], body: NonNu
 
             return await response.json();
         } catch (error) {
-            console.error('PUT request failed:', error);
             throw error;
         }
-    }else {
+    } else {
         throw new Error('Unsupported request type');
     }
 }

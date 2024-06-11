@@ -26,7 +26,6 @@ const Sidebar = () => {
         <h4>Profile Info</h4>
         <div className="inner-sec1">
           <Link to="/edit"><span>Edit Profile</span></Link>
-
         </div>
       </div>
     </section>
