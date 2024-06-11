@@ -70,7 +70,7 @@ const SignUp: React.FC = () => {
 
                 await fetchData('/api/user/createUser', [], userData, 'POST')
                     .then((res) => {
-                        if (res && res.status === 200) {
+                        if (res) {
                             navigate("/Login");
                         } else {
                             throw res;
